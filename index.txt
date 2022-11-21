@@ -1,0 +1,45 @@
+	1. Регистрация/авторизация пользователя. При авторизации пользователь на клиент 
+	получает JWT из которого можно получить id пользователя.
+		ToDO app
+
+		user {
+			fullName
+    		email
+    		passwordHash
+    		avatarUrl
+		}
+
+
+		POST
+			/auth/register      <new User>,<Token>
+			/auth/login         <User>,,<Token>
+
+		GET
+			/auth/me     <User>
+
+	
+	
+	
+	2. Авторизованному пользователю доступны CRUD endpoints для сущности
+ 	todo (должен быть middleware в котором будет проверка валидного токена) 
+	
+		Todo {
+			todoBody
+		}
+
+
+		GET
+			/todos              --> if token have -->       Array<Todo>
+			/todos/:todoId      --> if token have -->       <Todo>
+
+			3.Доступно получение todo как все разом, так и постранично. Возможны фильтры
+			/todos?limit=5 & page=1  --> if token have -->  Array<Todo> { five todos in one page}
+
+		POST
+			/todos              --> if token have -->       [todoBody]
+
+		PATCH
+			/todos/:todoId      --> if token have -->       [todoBody]
+
+		DELETE
+			/todos/:todoId      --> if token have -->       [ result ]
